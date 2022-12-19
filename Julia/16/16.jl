@@ -7,7 +7,7 @@
 #r=Robot("16.sit",animate=true)
 #solve!(r,Nord)
 
-function  shuttle!(stop_condition::Function, robot, side)
+function shuttle!(stop_condition::Function, robot, side)
     n=0 
     while !stop_condition() 
     n += 1
@@ -16,13 +16,13 @@ function  shuttle!(stop_condition::Function, robot, side)
     end
 end
 
-function along!(robot, side, n)
+function along!(robot, side, n) #Просто ходит по кол-ву шагов
     for _i in 1:n
     move!(robot,side)
     end
 end
 
-function solve!(robot,side)
+function solve!(robot,side) #смотрит с какой стороны граница
     if (isborder(robot,left(side)))
         shuttle!(()->!isborder(robot,left(side)),robot,side)
     elseif (isborder(robot,right(side)))
