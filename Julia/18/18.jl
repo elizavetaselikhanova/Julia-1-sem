@@ -1,4 +1,4 @@
-#Задача 18. Написать рекурсивную функцию, перемещающую робота до упора в заданном направлении.
+#Задача 18. Решить предыдущую задачу но при допллинтельном условии. Решить 8 задачу с использованием обобщенной функции. 
 
 #Ввести в терминал:
 #>julia
@@ -8,20 +8,20 @@
 #solve_1!(r)
 #r=Robot("18.2.sit",animate=true)
 #solve_2!(r)
-
-function spiral_1!(stop_condition::Function, robot) #Первая спираль
-    n=0
+1
+function spiral_1!(stop_condition::Function, robot) #Робот идет по спирали и ищет маркер.
+    n=0 #счетчик шагов
     side=Nord
     while !stop_condition()
         n+=1
-        for _i in 1:2
+        for _i in 1:2 #2 раза выполняется код ниже
         along_1!(robot,side,n,stop_condition)
         side=left(side)
         end
     end
 end
 
-function along_1!(robot,side,n,stop_condition::Function)
+function along_1!(robot,side,n,stop_condition::Function) #Робот делает н шагов (проверяет н раз маркер и идет)
     for _i in 1:n
         if (!stop_condition())
             wall_recursion!(robot,side)
@@ -40,12 +40,12 @@ function wall_recursion!(robot,side) #Рекурсивный способ обх
     end
 
 end
+ 2
 
-
-function  shuttle!(stop_condition::Function, robot, side) #Челнок обход стены
+function  shuttle!(stop_condition::Function, robot, side) #Функция челнок(шаг вправо, шаг влево, два вправо, возвращение на позицию, два влево)
     n=0 
-    start_side=side
-while !stop_condition() 
+    start_side=side #начальная сторона
+while !stop_condition() #если робот наткнется сразу на маркер, конец программы
  n += 1
  along_shuttle!(robot, right(side), n,()->!isborder(robot,start_side))
  side = inverse(side)
@@ -70,7 +70,7 @@ if (n==0)
 end
 end
 
-function  along_shuttle!(robot, side, n,stop_condition::Function)        
+function  along_shuttle!(robot, side, n,stop_condition::Function) #н шагов и ищет пустое место(выход)   
 for _i in 1:n
     if (!stop_condition())
     move!(robot,side)
@@ -91,7 +91,7 @@ while !stop_condition()
 end
 end
 
-function along!(robot,side,n,stop_condition::Function)
+function along!(robot,side,n,stop_condition::Function) #через шаттл. Делает н шагов и если стена то вызывает шаттл.
 for _i in 1:n
     if !stop_condition()
     shuttle!(()->!isborder(robot,side),robot,side)
