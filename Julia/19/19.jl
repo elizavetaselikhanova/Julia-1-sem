@@ -5,16 +5,11 @@
 #using HorizonSideRobots
 #include("19.jl")
 #r=Robot("19.sit",animate=true)
-#solve!(r,Ost)
+#move_recursion!!(r,Ost)
 
-function move_recursion!(robot,side) #Идет рекурсивно и до упора
+function move_recursion!(robot,side) #Идет рекурсивно до стены
     if (!isborder(robot,side))
         move!(robot,side)
         move_recursion!(robot,side)
     end
-end
-
-
-function solve!(robot,side)
-   move_recursion!(robot,side)
 end
