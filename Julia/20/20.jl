@@ -5,7 +5,7 @@
 #using HorizonSideRobots
 #include("20.jl")
 #r=Robot("20.sit",animate=true)
-#solve!(r,Ost)
+#moving_recursion!(r,Ost)
 
 function moving_recursion!(robot,side)  #Рекурсивно идет до стены, ставит маркер и идет обратно
     if (isborder(robot, side))
@@ -15,10 +15,6 @@ function moving_recursion!(robot,side)  #Рекурсивно идет до ст
         moving_recursion!(robot, side)
         move!(robot, inverse(side))
     end
-end
-
-function solve!(robot,side)
-   moving_recursion!(robot,side)
 end
 
 inverse(side::HorizonSide) = HorizonSide((Int(side) +2)% 4)
