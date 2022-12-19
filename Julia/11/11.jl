@@ -8,20 +8,20 @@
 #r=Robot("11.sit",animate=true)
 #solve!(r)
 
-function snake!(robot) #Робот идет и делает проверку
+function snake!(robot) #идет змейкой по всему полю
     side=Ost
     k=0
-    while ( !isborder(robot,Nord) || !isborder(robot,inverse(side)))
+    while ( !isborder(robot,Nord) || !isborder(robot,inverse(side))) #пока не будет над головй и сбоку границы робот идет
         k+=along_check!(robot,side)
         move!(robot,Nord)
         side=inverse(side)
     end
-    return k
+    return k #счетчик границ
 end
 
 function check!(robot,side) #Функция, проверяющая перегородки
     if (isborder(robot,Nord))
-        while (isborder(robot,Nord))
+        while (isborder(robot,Nord)) #пока сверху перегородки идешь до тех пор пока она не закончится
             move!(robot,side)
         end
         return 1
@@ -30,7 +30,7 @@ function check!(robot,side) #Функция, проверяющая перего
     end
 end
 
-function along_check!(robot,side) #функция along с проверкой
+function along_check!(robot,side) #функция along с проверкой перегородок
     k=0
     while (!isborder(robot,side))
         move!(robot,side)
@@ -39,7 +39,7 @@ function along_check!(robot,side) #функция along с проверкой
     return k
 end
 
-function find_corner!(robot) #Робот идет в угол и считает шаги
+function find_corner!(robot) #Робот идет в начальный угол и считает шаги чтобы вернутся домой
  num_steps_West=0
     while (!isborder(robot,West))
         move!(robot,West)
