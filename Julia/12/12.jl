@@ -8,7 +8,7 @@
 #r=Robot("12.sit",animate=true)
 #solve!(r)
 
-function snake!(robot)  #Робот идет и делает проверку
+function snake!(robot)  #Робот идет змейкой
     side=Ost
     k=0
     while ( !isborder(robot,Nord) || !isborder(robot,inverse(side)))
