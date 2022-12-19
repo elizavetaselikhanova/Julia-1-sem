@@ -9,7 +9,7 @@
 #r=Robot("17.sit",animate=true)
 #solve!(r)
 
-function spiral!(stop_condition::Function, robot)
+function spiral!(stop_condition::Function, robot) #идет по спирали и ищет маркеры
     n=0
     side=Nord
     while !stop_condition()
@@ -21,7 +21,7 @@ function spiral!(stop_condition::Function, robot)
     end
  end
  
- function along!(robot,side,n,stop_condition::Function)
+ function along!(robot,side,n,stop_condition::Function) #Шаг, ищет маркер и так далее
     for _i in 1:n
         if !stop_condition()
         move!(robot,side)
