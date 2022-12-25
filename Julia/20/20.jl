@@ -7,7 +7,7 @@
 #r=Robot("20.sit",animate=true)
 #moving_recursion!(r,Ost)
 
-function moving_recursion!(robot,side)  #Рекурсивно идет до стены, ставит маркер и идет обратно
+function moving_recursion!(robot,side)  #Рекурсивным методом идет до стены, ставит маркер и идет обратно
     if (isborder(robot, side))
         putmarker!(robot)
     else
