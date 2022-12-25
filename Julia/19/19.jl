@@ -7,7 +7,7 @@
 #r=Robot("19.sit",animate=true)
 #move_recursion!!(r,Ost)
 
-function move_recursion!(robot,side) #Идет рекурсивно до стены
+function move_recursion!(robot,side) #Идет рекурсивно до стены в заданном направлении.
     if (!isborder(robot,side))
         move!(robot,side)
         move_recursion!(robot,side)
